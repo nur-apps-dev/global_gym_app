@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:get/get.dart';
 
 import '../../../../../utlis/utils.dart';
 
@@ -10,14 +13,14 @@ class TermsScreen extends StatelessWidget {
     final sizeH = MediaQuery.sizeOf(context).height;
 
     return Scaffold(
-      appBar: AppBar(title: HeadingTwo(data: AppString.settingTerms),),
+      appBar: AppBar(title: HeadingTwo(data: "terms_of_services".tr),),
       body:  SingleChildScrollView(
         child: Padding(
           padding:  EdgeInsets.all(sizeH*.016),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const HeadingThree(data: 'Our Terms & Conditions'),
+                HeadingThree(data: 'terms_of_services'.tr),
               SizedBox(height: sizeH*.02,),
               Container(
                 width: double.infinity,
@@ -29,8 +32,16 @@ class TermsScreen extends StatelessWidget {
                 ),
                 padding:  EdgeInsets.all(sizeH*.016),
                 child: SingleChildScrollView(
-                    child: HeadingThree(
-                        data: AppString.policy)),
+                    child:HtmlWidget(
+                        "${AppString.policy}",
+                        textStyle: TextStyle(
+                          fontFamily: "Lora",
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                          fontSize: 18.sp,
+
+                        )
+                    ),),
               ),
             ],
           ),

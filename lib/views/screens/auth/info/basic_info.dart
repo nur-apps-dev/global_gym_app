@@ -155,6 +155,7 @@ class _BasicInfoState extends State<BasicInfo> {
                 controller: _ageController,
                 hintText: "What is your age?".tr,
                 borderColor: AppColors.textFieldBorderColor,
+                keyboardType: TextInputType.number,
                 validator: (value){
                   if(value == null || value.isEmpty){
                     return 'Please enter Age'.tr;
@@ -175,6 +176,7 @@ class _BasicInfoState extends State<BasicInfo> {
                       controller: _heightController,
                       hintText: "176".tr,
                       borderColor: AppColors.textFieldBorderColor,
+                      keyboardType: TextInputType.number,
                       validator: (value){
                         if(value == null || value.isEmpty){
                           return 'Please enter Age'.tr;

@@ -19,7 +19,7 @@ class ProfileInformation extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: HeadingTwo(data: 'profile_information'.tr), // Translated title
+        title: HeadingTwo(data: 'Profile Information'.tr), // Translated title
       ),
       body: SingleChildScrollView(
         child: Padding(

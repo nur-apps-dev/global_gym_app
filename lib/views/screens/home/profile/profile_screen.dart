@@ -40,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
             // Profile buttons
             _buildProfileOption(
               icon: Icons.person_outline,
-              label: 'profile_information'.tr, // Profile Information
+              label: 'Profile Information'.tr, // Profile Information
               onTap: () {
                 Get.toNamed(RouteNames.profileInformation);
               },

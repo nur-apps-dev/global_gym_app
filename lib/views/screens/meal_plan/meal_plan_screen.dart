@@ -51,7 +51,7 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
         width: double.infinity,
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.h),
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -71,9 +71,15 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
                 ),
 
                 SizedBox(height: 20.h),
-                SizedBox(height: 120.h,
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomText(text: "December",),
+                    CustomText(text: "January",)
+                  ],
+                ),
+                SizedBox(height: 80.h,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.only(top: 10),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -88,7 +94,7 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
                   ),
                 ),
                 ),
-                SizedBox(height: 20.h),
+
                 Container(
                   margin: EdgeInsets.symmetric(vertical: sizeH * .012),
                   padding: EdgeInsets.all(sizeH * .01),
@@ -155,7 +161,7 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
                 CustomText(text: "Today".tr,fontsize: 20.sp,),
                 SizedBox(height: 10.h,),
                 CustomTextButton(
-                    text: '+ Add  Exercise'.tr,
+                    text: '+ Add New Meal'.tr,
                     color: Color(0xff999999),
                     onTap: () {
                     // /  Get.toNamed(RouteNames.addExercise,preventDuplicates: false);
@@ -261,6 +267,8 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
                                             onPressed: () {},
                                             icon: const Icon(Icons.pin_drop_rounded,   color: Color(0xff999999),),
                                           ),
+                                          Image.asset(AppImages.carrots,height: 40.h,width: 40.w,),
+                                          SizedBox(width: 10.w,),
                                           CustomText(text: "Beef",fontsize: 18.sp,),
                                           CustomText(text: "350 Cal(150g)",),
                                           IconButton(
@@ -277,7 +285,7 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
                                 Padding(
                                   padding:  EdgeInsets.all(6.r),
                                   child: CustomTextButton(
-                                      text: '+ Add  Exercise'.tr,
+                                      text: '+ Add New Food'.tr,
                                       color: Color(0xff999999),
                                       onTap: () {
                                         Get.toNamed(RouteNames.foodAddScreen,preventDuplicates: false);
@@ -510,8 +518,8 @@ class DateCircle extends StatelessWidget {
           children: [
 
             SizedBox(
-              width: 60,
-              height: 60,
+              width: 40,
+              height: 40,
               child: CircularProgressIndicator(
                 value: dateItem.progress ?? 0.0, // Default to 0.0 if null
                 strokeWidth: 6,
@@ -528,7 +536,7 @@ class DateCircle extends StatelessWidget {
                   dateItem.date,
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -536,7 +544,7 @@ class DateCircle extends StatelessWidget {
                   dateItem.day,
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 12,
+                    fontSize: 10.sp,
                   ),
                 ),
               ],
