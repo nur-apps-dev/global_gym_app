@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:get/get.dart';
 
 import '../../../../../utlis/utils.dart';
 
@@ -10,14 +13,14 @@ class AboutScreen extends StatelessWidget {
     final sizeH = MediaQuery.sizeOf(context).height;
 
     return Scaffold(
-      appBar: AppBar(title: HeadingTwo(data: AppString.settingAbout),),
+      appBar: AppBar(title: HeadingTwo(data: "about_us".tr),),
       body:  SingleChildScrollView(
         child: Padding(
           padding:  EdgeInsets.all(sizeH*.016),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const HeadingThree(data: 'About Us'),
+               HeadingThree(data: 'about_us'.tr),
               SizedBox(height: sizeH*.02,),
               Container(
                 width: double.infinity,
@@ -29,8 +32,19 @@ class AboutScreen extends StatelessWidget {
                 ),
                 padding:  EdgeInsets.all(sizeH*.016),
                 child: SingleChildScrollView(
-                    child: HeadingThree(
-                        data: AppString.policy)),
+                    child: HtmlWidget(
+                        "${AppString.policy}",
+                        textStyle: TextStyle(
+                          fontFamily: "Lora",
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                          fontSize: 18.sp,
+
+                        )
+                    ),
+                   // HeadingThree(data: AppString.policy)
+
+                ),
               ),
             ],
           ),

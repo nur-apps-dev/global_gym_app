@@ -55,7 +55,17 @@ class _MealInfoState extends State<MealInfo> {
     "Lentils".tr,
     "Chickpeas".tr];
   final List<String> meals = ['Breakfast'.tr, 'Snack'.tr, 'Lunch'.tr, 'Evening meal'.tr, 'Dinner'.tr,];
+  final List<Map<String, dynamic>> proteinItems = [
+    {'icon': AppImages.chicken, 'label': 'Chicken'},
+    {'icon':AppImages.beef, 'label': 'Meat'},
+    {'icon': AppImages.beef, 'label': 'Pork'},
+    {'icon': AppImages.fish, 'label': 'Fish'}, // Replace with a custom fish icon if needed
+    {'icon': AppImages.egg, 'label': 'Egg'},  // Replace with a custom egg icon if needed
+    {'icon':  AppImages.carrots, 'label': 'Soy'},
+  ];
   final Set<int> selectedMeal = {6};
+  final Set<int> selectProtien = {6};
+  final Set<int> selectCarb = {6};
 
 
 
@@ -68,7 +78,7 @@ class _MealInfoState extends State<MealInfo> {
        appBar:id != null ? AppBar(title:  CustomText(text: "Meal Generate".tr,fontsize: 18.sp,)):null,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(sizeH * .018),
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -231,11 +241,84 @@ class _MealInfoState extends State<MealInfo> {
               ),
               SizedBox(height: sizeH * .02),
 
-              ///===============Which food do you like ? =========================================
+
               CustomText(text: "Which food do you like ?".tr ,),
+              ///===============Protien=========================================
+              SizedBox(height: 20.h,),
+              CustomText(text: "Protien".tr ,fontWeight: FontWeight.w600,),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3, // Display 4 days per row
+                    childAspectRatio: 3,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemCount: proteinItems.length,
+                  itemBuilder: (context, index) {
+                    final item = proteinItems[index];
+                    bool isSelected = selectProtien.contains(index);
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (isSelected) {
+                            selectProtien.remove(index); // Deselect day
+                          } else {
+                            selectProtien.add(index); // Select day
+                          }
+                        });
+                      },
+                      child: ProteinCard(
+                        iconPath: item['icon'],
+                        label: item['label'],
+                        textColor: isSelected ?Colors.white:AppColors.textColor,
+                        colors:isSelected? AppColors.primaryColor :Colors.white ,
 
+                      ),
+                    );
+                  },
+                ),
+              ),
+              ///===============Protien=========================================
+              SizedBox(height: 20.h,),
+              CustomText(text: "Carbs".tr,fontWeight: FontWeight.w600,),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3, // Display 4 days per row
+                    childAspectRatio: 3,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemCount: proteinItems.length,
+                  itemBuilder: (context, index) {
+                    final item = proteinItems[index];
+                    bool isSelected = selectCarb.contains(index);
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (isSelected) {
+                            selectCarb.remove(index); // Deselect day
+                          } else {
+                            selectCarb.add(index); // Select day
+                          }
+                        });
+                      },
+                      child: ProteinCard(
+                        iconPath: item['icon'],
+                        label: item['label'],
+                        textColor: isSelected ?Colors.white:AppColors.textColor,
+                        colors:isSelected? AppColors.primaryColor :Colors.white ,
 
-
+                      ),
+                    );
+                  },
+                ),
+              ),
               // buildPopupMenuField(
               //   ['no_restrictions', 'vegan', 'vegetarian', 'keto', 'low_carb'],
               //   selectedValue: _selectedDiet?.tr,
@@ -343,6 +426,47 @@ class _MealInfoState extends State<MealInfo> {
           ),
         );
       },
+    );
+  }
+}
+class ProteinCard extends StatelessWidget {
+  final String iconPath;
+  final String label;
+  final Color colors;
+  final Color textColor;
+
+  const ProteinCard({required this.iconPath, required this.label, required this.colors, required this.textColor});
+
+  @override
+  Widget build(BuildContext context) {
+    final sizeH = MediaQuery.sizeOf(context).height;
+    final sizeW = MediaQuery.sizeOf(context).width;
+  //  final isSelected = _selectedItems.contains(itemName);
+    return Container(
+      decoration: BoxDecoration(
+        color: colors,
+        border: Border.all(
+            color: AppColors.iconColor),
+        borderRadius: BorderRadius.circular(8),
+      ),child:  Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            iconPath,
+            width: 20.w,
+            height:20.h
+          ),
+          const SizedBox(width: 8.0),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w500,
+              color: textColor,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

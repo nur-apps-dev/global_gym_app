@@ -60,7 +60,7 @@ class CustomNavbarState extends State<CustomNavbar> {
           IconButton(onPressed: () {}, icon: AppIcons.fire),
           IconButton(onPressed: () {
             Get.toNamed(RouteNames.cartScreen,preventDuplicates: false);
-          }, icon: AppIcons.cart),
+          }, icon: Icon(Icons.shopping_cart_outlined),),
           InkWell(
             onTap: () {
               Get.toNamed(RouteNames.profileScreen);
